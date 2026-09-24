@@ -1,0 +1,60 @@
+{
+  "name": "Your Brand",
+  "colors": {
+    "bg": "#111116",
+    "surface": "#1D1D26",
+    "fg": "#FFFFFF",
+    "muted": "#9C9CAB",
+    "accent": "#FF5A36",
+    "accent2": "#FFD23F",
+    "accent3": "#3DDC97"
+  },
+  "fonts": {
+    "display": {
+      "family": "Anton",
+      "files": [
+        "Anton-Regular.ttf"
+      ],
+      "weight": 400,
+      "upper": true
+    },
+    "head": {
+      "family": "Poppins",
+      "files": [
+        "Poppins-Black.ttf"
+      ],
+      "weight": 900
+    },
+    "body": {
+      "family": "Poppins",
+      "files": [
+        "Poppins-SemiBold.ttf"
+      ],
+      "weight": 600
+    },
+    "mono": {
+      "family": "Space Mono",
+      "files": [
+        "SpaceMono-Bold.ttf"
+      ],
+      "weight": 700
+    }
+  },
+  "logo": null,
+  "radius": 28,
+  "style": {
+    "plate": "mesh",
+    "texture": "dots",
+    "blobs": [
+      "accent",
+      "#5B3DF5"
+    ],
+    "anim": "rise",
+    "hook": "slam",
+    "highlight": "marker",
+    "transition": "whip",
+    "transitionDur": 0.32,
+    "grain": 0.05,
+    "vignette": 0.35
+  }
+}

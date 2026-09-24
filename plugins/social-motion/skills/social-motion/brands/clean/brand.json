@@ -1,0 +1,61 @@
+{
+  "name": "Clean",
+  "colors": {
+    "bg": "#F5F6FA",
+    "surface": "#FFFFFF",
+    "fg": "#14213D",
+    "muted": "#6B7280",
+    "accent": "#2563EB",
+    "accent2": "#F59E0B",
+    "accent3": "#10B981",
+    "ink": "#14213D"
+  },
+  "fonts": {
+    "display": {
+      "family": "Poppins",
+      "files": [
+        "Poppins-Black.ttf"
+      ],
+      "weight": 900,
+      "upper": false
+    },
+    "head": {
+      "family": "Poppins",
+      "files": [
+        "Poppins-Bold.ttf"
+      ],
+      "weight": 700
+    },
+    "body": {
+      "family": "Poppins",
+      "files": [
+        "Poppins-Regular.ttf"
+      ],
+      "weight": 400
+    },
+    "mono": {
+      "family": "Space Mono",
+      "files": [
+        "SpaceMono-Bold.ttf"
+      ],
+      "weight": 700
+    }
+  },
+  "logo": null,
+  "radius": 24,
+  "style": {
+    "plate": "mesh",
+    "texture": "grid",
+    "blobs": [
+      "accent"
+    ],
+    "blobAlpha": 0.12,
+    "anim": "fade",
+    "hook": "rise",
+    "highlight": "underline",
+    "transition": "push",
+    "transitionDur": 0.4,
+    "grain": 0.02,
+    "vignette": 0.0
+  }
+}

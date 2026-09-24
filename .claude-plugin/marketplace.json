@@ -1,0 +1,16 @@
+{
+  "name": "social-motion-skill",
+  "description": "Social motion graphics written as code: kinetic typography, stat counters, charts, captions, transitions and synthesised sound, rendered frame-exact to 9:16 MP4.",
+  "version": "1.2.0",
+  "owner": { "name": "Rizki" },
+  "plugins": [
+    {
+      "name": "social-motion",
+      "source": "./plugins/social-motion",
+      "description": "Make Reels / TikTok / Shorts motion graphics in JavaScript (node canvas + ffmpeg): brand kit, kinetic type, counters, charts, captions, transitions, beat-synced sound.",
+      "category": "content",
+      "keywords": ["motion graphics", "reels", "tiktok", "shorts", "kinetic typography", "animation", "canvas", "ffmpeg"],
+      "license": "MIT"
+    }
+  ]
+}

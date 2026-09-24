@@ -1,0 +1,9 @@
+{
+  "name": "social-motion",
+  "displayName": "Social Motion",
+  "description": "Social motion graphics written as code: brand kit, kinetic typography, counters, charts, captions, transitions, synthesised SFX and beat beds. 9:16 by default.",
+  "version": "1.2.0",
+  "author": { "name": "Rizki" },
+  "license": "MIT",
+  "keywords": ["motion graphics", "reels", "tiktok", "kinetic typography", "canvas", "ffmpeg"]
+}
