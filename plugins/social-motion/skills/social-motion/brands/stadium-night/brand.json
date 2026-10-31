@@ -1,0 +1,37 @@
+{
+  "name": "Stadium Night (data story)",
+  "colors": {
+    "bg": "#07090E",
+    "surface": "#151B26",
+    "fg": "#F3F1EA",
+    "muted": "#8A93A3",
+    "accent": "#F2C14E",
+    "accent2": "#FF5B4F",
+    "accent3": "#4ADE80",
+    "pitch": "#3F7A3B",
+    "pitchDark": "#2C5A2B",
+    "crowd": "#1A2030",
+    "compareA": "#7AA7FF",
+    "compareB": "#FF8FB1"
+  },
+  "fonts": {
+    "display": { "family": "Poppins", "files": ["Poppins-Bold.ttf"], "weight": 700, "upper": false },
+    "head": { "family": "Poppins", "files": ["Poppins-Bold.ttf"], "weight": 700 },
+    "body": { "family": "Poppins", "files": ["Poppins-SemiBold.ttf"], "weight": 600 },
+    "mono": { "family": "Space Mono", "files": ["SpaceMono-Bold.ttf"], "weight": 700 }
+  },
+  "logo": null,
+  "radius": 20,
+  "style": {
+    "plate": "gradient",
+    "gradientTo": "surface",
+    "texture": "none",
+    "anim": "rise",
+    "hook": "rise",
+    "highlight": "color",
+    "transition": "fade",
+    "transitionDur": 0.5,
+    "grain": 0.03,
+    "vignette": 0.3
+  }
+}

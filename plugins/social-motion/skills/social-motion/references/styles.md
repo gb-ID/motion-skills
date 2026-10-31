@@ -41,6 +41,26 @@ Numbers are the story. Weekly stats, match stats, market recaps, survey results.
 - Motion: bars / columns stagger 0.1 s, counters `eOut5` 1.1 s, line charts draw on 1.2–1.6 s, `cut` on bars.
 - Sound: ticks under counters (one per ~0.08 s, pitch rising), ding on the highlight, soft corporate or hype bed.
 
+## 5. Stadium data story (reference: story.gaffer)
+
+Calm, narrated football data stories inside an illustrated night stadium. Kit `stadium-night`.
+Full recipe (layout, colour-as-meaning, stage objects, beat structure, sound): `references/style-story-gaffer.md`.
+- Plate: near-black `#07090E` → `#151B26`, no texture; the stage (crowd + pitch) fills the bottom 60 %.
+- Type: bold grotesk sentence case 84–96 px top-left; numbers and labels in Space Mono; emphasis = colour only.
+- Gold = subject, red = bad, green = good. Motion: fade / rise, damp ≥ .8, camera moves instead of cuts.
+- Sound: VO first, crowd ambience bed, ticks under counters.
+
+## Saved reference styles
+
+When the user names an account or says "pakai gaya X", look here first and read the linked file.
+
+| user says | read | kit |
+|---|---|---|
+| story.gaffer, storygaffer, "gaya story gaffer", stadium data story | `references/style-story-gaffer.md` | `stadium-night` |
+
+To add one: study the reference, write `references/style-<name>.md` (same sections as the story.gaffer file),
+make a kit in `brands/<name>/`, add a preset above and a row in this table.
+
 ## Matching a client reference
 
 Make a swatch frame before the film: plate, three type sizes, a card, a button, a chart bar, each emphasis
