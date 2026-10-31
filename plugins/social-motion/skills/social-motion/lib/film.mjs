@@ -15,6 +15,7 @@
 // S = { ...whatever setup returned, W, H, fps, i (frame index) }.
 import { createCanvas } from "./core.mjs";
 import { format as fmt, drawSafe } from "./layout.mjs";
+import { ffmpegPath } from "./ffmpeg.mjs";
 import { spawn, execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -72,7 +73,7 @@ export async function run(F) {
   if (mode === "contact") {
     const file = a || path.join(out, (F.name || "film") + "-final.mp4"), alt = path.join(out, (F.name || "film") + ".mp4"), src = fs.existsSync(file) ? file : alt;
     const o = fresh(out, "contact", "jpg"), cols = W > H ? 5 : 8, rowsN = Math.ceil(F.dur * 2 / cols);
-    execFileSync("ffmpeg", ["-v", "error", "-y", "-i", src, "-vf", `fps=2,scale=${W > H ? 384 : 216}:-2,tile=${cols}x${rowsN}:padding=4:color=0x2a2a2a`, "-frames:v", "1", o]);
+    execFileSync(ffmpegPath(), ["-v", "error", "-y", "-i", src, "-vf", `fps=2,scale=${W > H ? 384 : 216}:-2,tile=${cols}x${rowsN}:padding=4:color=0x2a2a2a`, "-frames:v", "1", o]);
     console.log("wrote", o, "from", src); return;
   }
   if (mode === "verify") {
@@ -90,7 +91,7 @@ export async function run(F) {
   // CRF 17 + yuv420p + faststart: the platforms re-encode anyway, so give them a clean, high-bitrate master
   const args = ["-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgba", "-s", `${CW}x${CH}`, "-r", String(fps), "-i", "-",
     "-c:v", "libx264", "-crf", String(F.crf ?? 17), "-preset", "medium", "-pix_fmt", "yuv420p", "-profile:v", "high", "-movflags", "+faststart", file];
-  const ff = spawn("ffmpeg", args, { stdio: ["pipe", "inherit", "inherit"] });
+  const ff = spawn(ffmpegPath(), args, { stdio: ["pipe", "inherit", "inherit"] });
   for (let i = 0; i < N; i++) { const d = pixels(i); await new Promise((r) => ff.stdin.write(Buffer.from(d.buffer, d.byteOffset, d.byteLength)) ? r() : ff.stdin.once("drain", r));
     if (i % (fps * 5) === 0) process.stdout.write(`  ${(i / fps).toFixed(1)}s\n`); }
   ff.stdin.end(); const code = await new Promise((r) => ff.on("close", r));

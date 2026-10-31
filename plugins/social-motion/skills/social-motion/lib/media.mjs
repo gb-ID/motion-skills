@@ -13,6 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
+import { ffmpegPath } from "./ffmpeg.mjs";
 import { createCanvas, loadImage, clamp, lerp, inv, eOut5, eIn, eIO, spring, rrect, rgba, at, shadow } from "./core.mjs";
 
 // ------------------------------------------------------------------ loading
@@ -96,7 +97,7 @@ export async function prepClip(file, { fps = 30, w = 1080, start = 0, dur, dir, 
   const out = dir || path.join(process.cwd(), "out", ".clips", path.basename(file).replace(/\W+/g, "_") + "-" + id);
   if (!fs.existsSync(path.join(out, "done"))) {
     fs.mkdirSync(out, { recursive: true });
-    execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", String(start), ...(dur ? ["-t", String(dur)] : []), "-i", abs, "-vf", `fps=${fps},scale=${w}:-2`, "-q:v", String(quality), path.join(out, "f%05d.jpg")]);
+    execFileSync(ffmpegPath(), ["-v", "error", "-y", "-ss", String(start), ...(dur ? ["-t", String(dur)] : []), "-i", abs, "-vf", `fps=${fps},scale=${w}:-2`, "-q:v", String(quality), path.join(out, "f%05d.jpg")]);
     fs.writeFileSync(path.join(out, "done"), "");
   }
   const files = fs.readdirSync(out).filter((f) => f.endsWith(".jpg")).sort(); if (!files.length) throw new Error(`media: no frames extracted from ${abs}`);

@@ -1,9 +1,14 @@
 ---
 name: social-motion
-description: Make social-media motion graphics entirely in JavaScript — Reels / TikTok / Shorts explainers, promos, tip videos, stat reveals, kinetic typography, animated charts, captions, logo stings and end cards — rendered frame-exact to 9:16 MP4 with node canvas + ffmpeg, with a brand kit, beat-synced cuts and synthesised sound. Use for "bikin motion graphic", "pakai gaya story.gaffer", "animasi reels", "kinetic typography", "animate these stats", "make a reel/TikTok/short from this script", "logo sting", "explainer video", "animated infographic". Brand kits, stock photos, cut-outs and short b-roll clips are supported. Not for cutting interviews or long-form footage edits, UI micro-interactions or slide decks.
+description: Make Reels/TikTok/Shorts motion graphics as code (node canvas + ffmpeg): kinetic type, charts, captions, brand kits, voice-over, music. Use for animasi reels, motion graphic, explainers, "pakai gaya story.gaffer".
 ---
 
 # social-motion
+
+Use for: Reels / TikTok / Shorts explainers, promos, tip videos, stat reveals, kinetic typography, animated
+charts, captions, logo stings, end cards ("bikin motion graphic", "animasi reels", "animate these stats",
+"make a reel from this script"). Brand kits, stock photos, cut-outs and short b-roll are supported. Not for
+cutting interviews or long-form footage edits, UI micro-interactions or slide decks.
 
 **Frame-exact motion graphics for vertical social video, written as code.** A film is a pure function
 `frame(ctx, t)`. The library draws the pieces (kinetic type, counters, charts, cards, captions, CTAs,
@@ -43,9 +48,25 @@ Sound is synthesised from the same timeline as the picture, and the music bed gi
 | `shapes.mjs` | draw-on marks: `drawOn arrow check cross scribbleCircle underline`, `star heart sparkle playIcon pointer` |
 | `fx.mjs` | **`plate(ctx, W, H, t, B, seed)`** (the kit's background), backgrounds (`bgGradient bgMesh bgDots bgGrid bgStripes`), finish (`makeGrain vignette`), `camera push punch shake flash`, `particles ring burstLines` |
 
-**First use on a machine:** if `<skill dir>/node_modules` is missing, run `npm install` in the skill directory
-(the folder this SKILL.md is in; only dependency `@napi-rs/canvas`). Needs node 20+ and ffmpeg on PATH; if
-ffmpeg is missing, tell the user how to install it (`brew install ffmpeg`, `winget install ffmpeg`, `apt install ffmpeg`).
+## Setup (run once per machine or sandbox session, before anything else)
+
+Works in Claude Code, claude.ai chat and Cowork. The skill folder may be read-only (claude.ai / Cowork), so
+work from a writable copy when needed:
+
+```bash
+SK="<the folder this SKILL.md is in>"
+if [ ! -w "$SK" ]; then rm -rf /tmp/social-motion && cp -r "$SK" /tmp/social-motion && SK=/tmp/social-motion; fi
+[ -d "$SK/node_modules/@napi-rs/canvas" ] || (cd "$SK" && npm install --no-audit --no-fund)
+command -v ffmpeg >/dev/null || pip install imageio-ffmpeg || pip install --break-system-packages imageio-ffmpeg
+export SOCIAL_MOTION_LIB="$SK/lib"      # film.mjs files read this; scripts live in "$SK/scripts"
+```
+- Needs node 18+ (20+ preferred). ffmpeg: the system one, or the pip `imageio-ffmpeg` binary, found
+  automatically (`lib/ffmpeg.mjs`; `FFMPEG=/path` overrides). No ffprobe needed.
+- If npm or pip can't reach the network, say so and ask the user to enable package installs
+  (claude.ai: Settings → Capabilities → code execution / network), don't try to work around it.
+- **Delivering**: in claude.ai / Cowork, copy the final MP4 (+ cover PNG) to the outputs folder
+  (`/mnt/user-data/outputs/`) so the user can download it; in Claude Code, leave it in the project's `out/`.
+- Sandbox renders are slower than a laptop: render `SCALE=.5` previews while iterating, full size once.
 
 ## The loop
 

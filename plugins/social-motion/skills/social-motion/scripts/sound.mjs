@@ -22,6 +22,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { ffmpegPath, mediaDuration } from "../lib/ffmpeg.mjs";
 
 export const SR = 48000;
 let seed = 9; const R = () => (seed = (seed * 16807) % 2147483647) / 2147483647 * 2 - 1;
@@ -72,7 +73,7 @@ export function readAudio(file) {
   const b = fs.readFileSync(file, { length: 64 }), isPcm16 = b.toString("ascii", 0, 4) === "RIFF" && (() => { try { const x = fs.readFileSync(file); let o = 12; while (o < x.length) { const id = x.toString("ascii", o, o + 4), sz = x.readUInt32LE(o + 4); if (id === "fmt ") return x.readUInt16LE(o + 8) === 1 && x.readUInt16LE(o + 22) === 16; o += 8 + sz + (sz % 2); } } catch {} return false; })();
   if (isPcm16) return readWav(file);
   const tmp = path.join(os.tmpdir(), `sm-${process.pid}-${path.basename(file).replace(/\W+/g, "_")}.wav`);
-  execFileSync("ffmpeg", ["-v", "error", "-y", "-i", file, "-vn", "-ac", "2", "-ar", String(SR), "-c:a", "pcm_s16le", tmp]);
+  execFileSync(ffmpegPath(), ["-v", "error", "-y", "-i", file, "-vn", "-ac", "2", "-ar", String(SR), "-c:a", "pcm_s16le", tmp]);
   const r = readWav(tmp); fs.unlinkSync(tmp); return r;
 }
 // one-pole smoothing of a 0/1 "voice is talking" signal -> a gain curve for the bed (sidechain-style ducking)
@@ -108,7 +109,7 @@ export function mix(cues, dur, bed, { bedVol = .55, bedAt = 0, duck = .5, voice,
 if (process.argv[1] && process.argv[1].endsWith("sound.mjs")) {
   const a = process.argv, [, , cueFile, pic, out] = a, opt = (k, d) => a.includes(k) ? a[a.indexOf(k) + 1] : d;
   if (!out) { console.error("usage: node sound.mjs cues.json picture.mp4 out.mp4 [--voice vo.mp3 --voice-at 0 --bed music.mp3 --bed-vol .55 --lufs -14]"); process.exit(1); }
-  const dur = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", pic]).toString());
+  const dur = mediaDuration(pic);
   const cues = cueFile === "none" ? [] : JSON.parse(fs.readFileSync(cueFile, "utf8")), voice = opt("--voice");
   // with a voice-over the music sits lower by default: speech is the hero
   const [L, Rr] = mix(cues, dur, opt("--bed"), { bedVol: parseFloat(opt("--bed-vol", voice ? ".35" : ".55")), bedAt: parseFloat(opt("--bed-at", "0")), duck: parseFloat(opt("--duck", ".5")),
@@ -118,12 +119,12 @@ if (process.argv[1] && process.argv[1].endsWith("sound.mjs")) {
   const target = parseFloat(opt("--lufs", "-14")), I = String(target + 1);
   // two-pass loudnorm in node (no shell variables for zsh to mangle), then a 4x-oversampled limiter:
   // AAC adds ~1.5 dB of inter-sample overshoot, so limit at -3 dBFS to land under -1 dBTP after encode
-  let m = {}; try { const r = execFileSync("ffmpeg", ["-hide_banner", "-nostats", "-i", tmp, "-af", `loudnorm=I=${I}:TP=-1.5:print_format=json`, "-f", "null", "-"], { stdio: ["ignore", "pipe", "pipe"] }); m = JSON.parse((r.toString().match(/\{[^{]*input_i[\s\S]*?\}/) || ["{}"])[0]); }
+  let m = {}; try { const r = execFileSync(ffmpegPath(), ["-hide_banner", "-nostats", "-i", tmp, "-af", `loudnorm=I=${I}:TP=-1.5:print_format=json`, "-f", "null", "-"], { stdio: ["ignore", "pipe", "pipe"] }); m = JSON.parse((r.toString().match(/\{[^{]*input_i[\s\S]*?\}/) || ["{}"])[0]); }
   catch (e) { const s = String(e.stderr || ""); m = JSON.parse((s.match(/\{[^{]*input_i[\s\S]*?\}/) || ["{}"])[0]); }
-  if (!m.input_i) { try { m = JSON.parse((execFileSync("sh", ["-c", `ffmpeg -hide_banner -nostats -i "${tmp}" -af loudnorm=I=${I}:TP=-1.5:print_format=json -f null - 2>&1`]).toString().match(/\{[^{]*input_i[\s\S]*?\}/) || ["{}"])[0]); } catch { m = {}; } }
+  if (!m.input_i) { try { m = JSON.parse((execFileSync("sh", ["-c", `"${ffmpegPath()}" -hide_banner -nostats -i "${tmp}" -af loudnorm=I=${I}:TP=-1.5:print_format=json -f null - 2>&1`]).toString().match(/\{[^{]*input_i[\s\S]*?\}/) || ["{}"])[0]); } catch { m = {}; } }
   const lim = "aresample=192000,alimiter=limit=0.7:level=false:attack=1:release=40,aresample=48000";
   const ln = m.input_i ? `loudnorm=I=${I}:TP=-1.5:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:linear=true,${lim}` : `loudnorm=I=${I}:TP=-1.5,${lim}`;
-  execFileSync("ffmpeg", ["-v", "error", "-y", "-i", pic, "-i", tmp, "-map", "0:v", "-map", "1:a", "-af", ln, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", out]);
+  execFileSync(ffmpegPath(), ["-v", "error", "-y", "-i", pic, "-i", tmp, "-map", "0:v", "-map", "1:a", "-af", ln, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", out]);
   fs.unlinkSync(tmp);
   console.log("wrote", out, m.input_i ? `(mix measured ${m.input_i} LUFS, target ${target})` : "");
 }
