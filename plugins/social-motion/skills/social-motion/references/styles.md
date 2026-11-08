@@ -59,6 +59,14 @@ Full recipe (colour roles, 3-tone objects, atmosphere fade, night variant, motio
 - One subject, 3 tones per material, thin darker outlines, soft contact shadows, one strong colour (the kit's accent) on the key part.
 - Motion: slow push-ins and drifts, the mechanism itself moves, damp ≥ .85, `fade` between views.
 
+## 7. Stadium hybrid (story.gaffer × lo.jaditau)
+
+One night-stadium world, three cameras: pitch-side perspective (~75 % story.gaffer), aerial (whole structure),
+object close-up on the same turf (~75 % lo.jaditau). Colours and type from the project kit.
+Full recipe: `references/style-stadium-hybrid.md`; reference code `examples/stadium-hybrid/`.
+- Same plate, floodlight bloom, striped turf and crowd dots in every scene; players are 3-tone tokens.
+- One accent per frame; camera moves (not cuts) link the views.
+
 ## Saved reference styles
 
 When the user names an account or says "pakai gaya X", look here first and read the linked file.
@@ -67,6 +75,7 @@ When the user names an account or says "pakai gaya X", look here first and read 
 |---|---|---|
 | story.gaffer, storygaffer, "gaya story gaffer", stadium data story | `references/style-story-gaffer.md` | `stadium-night` |
 | lo.jaditau, lojaditau, "gaya lo jaditau", "gaya jaditau" (background / illustration only) | `references/style-lo-jaditau.md` | none: use the project's kit |
+| "story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", football explainer mixing pitch and object scenes | `references/style-stadium-hybrid.md` | none: use the project's kit |
 
 To add one: study the reference, write `references/style-<name>.md` (same sections as the story.gaffer file),
 make a kit in `brands/<name>/`, add a preset above and a row in this table.

@@ -1,6 +1,6 @@
 ---
 name: social-motion
-description: Make Reels/TikTok/Shorts motion graphics as code (node canvas + ffmpeg): kinetic type, charts, captions, brand kits, voice-over, music. Use for animasi reels, motion graphic, explainers, "pakai gaya story.gaffer", "pakai gaya lo.jaditau".
+description: Make Reels/TikTok/Shorts motion graphics as code (node canvas + ffmpeg): kinetic type, charts, captions, brand kits, voice-over, music. Use for animasi reels, motion graphic, explainers, "pakai gaya story.gaffer", "pakai gaya lo.jaditau", stadium hybrid.
 ---
 
 # social-motion
@@ -25,7 +25,7 @@ Sound is synthesised from the same timeline as the picture, and the music bed gi
 | Timing, springs, staggers, transitions, cutting on the beat | `references/motion.md`, `lib/sequence.mjs` |
 | Formats, safe zones (platform UI), composition | `references/layout.md`, `lib/layout.mjs` |
 | Pick a look (hype editorial, clean corporate, soft lifestyle, data desk) | `references/styles.md` |
-| **A saved reference style** ("pakai gaya story.gaffer", "gaya lo.jaditau", any account the user names) | `references/styles.md` → *Saved reference styles* table → its `references/style-*.md` file |
+| **A saved reference style** ("pakai gaya story.gaffer", "gaya lo.jaditau", "story.gaffer + lo.jaditau", any account the user names) | `references/styles.md` → *Saved reference styles* table → its `references/style-*.md` file |
 | **Put a client's brand in** (colours, fonts, logo, house style), private kits | `references/brand-and-assets.md`, `scripts/new-kit.mjs`, `brands/`, `lib/brand.mjs` |
 | **Stock photos, cut-outs, b-roll video** | `references/brand-and-assets.md`, `lib/media.mjs` |
 | **Voice-over, own music, own SFX**, captions from a VO, music bed, loudness | `references/sound.md`, `scripts/sound.mjs` (`--voice`, `--bed`), `scripts/words.mjs`, `scripts/transcribe.py`, `scripts/beat.mjs` |
