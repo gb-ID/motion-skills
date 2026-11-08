@@ -4,6 +4,12 @@ Source: instagram.com/lo.jaditau (Indonesian "how does this everyday thing work"
 Nov 2026 from 5 reels the user picked (port crane + twistlocks, fire-truck skylift, lift safety brake,
 lightning on a plane, ATM note counting).
 
+**Routing (set by the user, Nov 2026): "pakai gaya lo.jaditau" is the only instruction he will give.**
+- If the film is about football (a match, a player, tactics, GoonerBurger) → build it with
+  `references/style-stadium-hybrid.md` (one night stadium, three cameras: perspective ~75 % story.gaffer,
+  aerial, object close-ups drawn the lo.jaditau way). Do not ask; that is what "gaya lo.jaditau" means there.
+- Anything else (a client product, a how-it-works explainer, non-football) → this file alone.
+
 **Scope: the user saved ONLY the illustration / background look.** Do not take their text system from this
 file: no headline layout, kicker style, caption pill, number blocks or chips. Text comes from whatever kit or
 preset the film already uses (or the user's own brand). **Take the look, not the brand**: never draw their

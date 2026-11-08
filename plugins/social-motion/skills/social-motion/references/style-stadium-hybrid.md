@@ -1,7 +1,7 @@
 # Combined style: stadium hybrid (story.gaffer × lo.jaditau)
 
 Saved Nov 2026, approved on the Declan Rice "si raja assist" reel (GoonerBurger).
-Use when the user asks for "gaya story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", or for a
+Use when the user says **"pakai gaya lo.jaditau" on football content** (his default instruction), or asks for "gaya story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", or for a
 football explainer that mixes tactical pitch scenes with object / number scenes.
 
 **Colours and type always come from the project's kit** (`B.c.*`, `B.font`). Nothing below is a hex value

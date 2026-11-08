@@ -74,8 +74,8 @@ When the user names an account or says "pakai gaya X", look here first and read 
 | user says | read | kit |
 |---|---|---|
 | story.gaffer, storygaffer, "gaya story gaffer", stadium data story | `references/style-story-gaffer.md` | `stadium-night` |
-| lo.jaditau, lojaditau, "gaya lo jaditau", "gaya jaditau" (background / illustration only) | `references/style-lo-jaditau.md` | none: use the project's kit |
-| "story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", football explainer mixing pitch and object scenes | `references/style-stadium-hybrid.md` | none: use the project's kit |
+| lo.jaditau, lojaditau, "gaya lo jaditau", "gaya jaditau" → **football / pitch content (GoonerBurger, any match or player explainer): use the stadium hybrid** `references/style-stadium-hybrid.md`; anything else: `references/style-lo-jaditau.md` (illustration only) | see left | none: use the project's kit |
+| "story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", and "gaya lo.jaditau" on football content, football explainer mixing pitch and object scenes | `references/style-stadium-hybrid.md` | none: use the project's kit |
 
 To add one: study the reference, write `references/style-<name>.md` (same sections as the story.gaffer file),
 make a kit in `brands/<name>/`, add a preset above and a row in this table.
