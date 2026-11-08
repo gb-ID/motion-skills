@@ -17,7 +17,7 @@ There is no dedicated kit: use the project's kit and apply the recipe below to i
 ## What it is in one line
 
 One everyday machine, drawn as a clean flat-vector 3/4 (near-isometric) model, sitting large in a soft,
-quiet, paper-coloured world, so the eye has exactly one thing to look at and the mechanism is readable.
+quiet, light world, so the eye has exactly one thing to look at and the mechanism is readable.
 
 ## The look
 
@@ -25,7 +25,7 @@ quiet, paper-coloured world, so the eye has exactly one thing to look at and the
   down to a slightly darker version of the same colour (`shade(bg, -8…-15 %)` or the kit's `surface`).
   A long vertical gradient, no texture, no grain worth noticing. The top 25 % stays almost empty (that is
   where text would go). With a dark brand, flip it: dark `bg` top, a touch lighter at the bottom.
-- **Atmosphere fade**: the top of the subject dissolves into the paper (a vertical white-to-transparent
+- **Atmosphere fade**: the top of the subject dissolves into the background (a vertical `bg`-to-transparent
   gradient over the top 15–25 % of the stage, like haze). Background objects are lighter and lower contrast.
 - **Night variant** (sky / weather topics): background drops to a very dark, desaturated version of the kit's
   colour, with large blurred cloud blobs a few steps lighter at 40–60 %; the subject stays bright. One glow
