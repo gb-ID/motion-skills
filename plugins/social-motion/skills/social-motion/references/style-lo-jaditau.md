@@ -10,8 +10,9 @@ preset the film already uses (or the user's own brand). **Take the look, not the
 name, logo or wordmark (one reel prints "kamu jaditau" on the plane's fuselage; never copy that), and invent
 our own subjects and compositions rather than redrawing their scenes.
 
-Kit: `brands/lo-jaditau/` (`BRAND=lo-jaditau`) carries the palette and plate. If the film uses another kit
-for type, pull the colours from this file into the stage code instead.
+**No colours are saved for this style.** Colours always come from the brand / project kit in use
+(`B.c.*`). This file only describes *how* colour is used (roles, tones, contrast), never which hex.
+There is no dedicated kit: use the project's kit and apply the recipe below to it.
 
 ## What it is in one line
 
@@ -20,14 +21,15 @@ quiet, paper-coloured world, so the eye has exactly one thing to look at and the
 
 ## The look
 
-- **Ground / sky**: warm off-white paper `#EEE9E1` at the top, fading down to a slightly cooler or darker
-  neutral (`#D5D7D3` grey-green, `#C3BEB2` warm taupe). A long vertical gradient, no texture, no grain worth
-  noticing. The top 25 % stays almost empty paper (that is where text would go).
+- **Ground / sky**: a light, soft background (the kit's `bg`, or a very light tint of it) at the top, fading
+  down to a slightly darker version of the same colour (`shade(bg, -8…-15 %)` or the kit's `surface`).
+  A long vertical gradient, no texture, no grain worth noticing. The top 25 % stays almost empty (that is
+  where text would go). With a dark brand, flip it: dark `bg` top, a touch lighter at the bottom.
 - **Atmosphere fade**: the top of the subject dissolves into the paper (a vertical white-to-transparent
   gradient over the top 15–25 % of the stage, like haze). Background objects are lighter and lower contrast.
-- **Night variant** (sky / weather topics): deep slate `#1E2636` → `#2D3649`, soft large blurred cloud
-  blobs `#454F65` at 40–60 %, subject still bright `#F1F2F7`. One glow colour for energy (yellow
-  `#F7D54A` halo, pale blue `#BFD3FF` spark).
+- **Night variant** (sky / weather topics): background drops to a very dark, desaturated version of the kit's
+  colour, with large blurred cloud blobs a few steps lighter at 40–60 %; the subject stays bright. One glow
+  colour (the kit's accent) for energy.
 - **Objects**: flat vector, **3 tones per material** (top face lightest, front mid, side darkest), thin
   1–1.5 px outlines one shade darker than the face, small rounded corners, simple bevels. No gradients
   inside a face except metal and glass (a soft 2-stop sheen). No textures, no noise.
@@ -41,23 +43,20 @@ quiet, paper-coloured world, so the eye has exactly one thing to look at and the
   No hard cast shadows.
 - **Scale cues**: numbered floors, stacks of identical units, roads with dashed lines, so size reads without text.
 
-## Palette (approx., sampled from the references)
+## How colour is used (colours themselves come from the kit)
 
-| role | hex | used for |
-|---|---|---|
-| paper | `#EEE9E1` | top of frame, default background |
-| paper-low | `#D5D7D3` / `#C3BEB2` | bottom of the gradient, floors, ground planes |
-| steel | `#CBCFD6` / `#A5ADB6` / `#7A8189` | machine bodies (3 tones) |
-| dark metal | `#2B2F37` | slots, rails, screens, cables |
-| glass | `#526476` → `#3B5A8A` | windows, screens (soft sheen) |
-| signal red | `#E06A55` | the one "danger / key part" colour; also red objects (notes, containers) |
-| safety yellow | `#F2C84B` | moving / mechanical parts (spreader, keypad, brake), glow halos |
-| safety orange | `#E2683C` | equipment (fire-truck ladder) |
-| container set | `#3D70BD` blue, `#428189` teal, `#4E8A55` green, `#C9553B` rust, `#E0E0E0` white, `#2E3A55` navy | stacks of repeated objects; muted, never neon |
-| road | `#35486C` asphalt with `#FFFFFF` dashed lines | ground strips at the bottom |
-| night | `#1E2636` / `#2D3649` / `#454F65` | night-variant sky and clouds |
+| role | rule |
+|---|---|
+| background | the kit's lightest neutral (`bg`), long vertical gradient to a slightly darker version of itself |
+| floors / ground planes | 1–2 steps darker than the background, same hue |
+| machine bodies | a neutral from the kit (or a desaturated `muted`), drawn in 3 tones: top `shade(c, +10 %)`, front `c`, side `shade(c, −12 %)` |
+| dark parts | slots, rails, screens, cables in the kit's darkest colour (`fg` or a near-black) |
+| key part | the kit's `accent`: the ONE strong colour, only on the part the film explains |
+| secondary moving parts | `accent2` if the kit has one, otherwise a lighter shade of `accent` |
+| repeated objects (stacks, rows) | the kit's colours desaturated / muted (mix 30–40 % toward grey) so they never compete with the key part |
+| outlines | each face's own colour, one step darker (`shade(face, −20 %)`), 1–1.5 px |
 
-Rule: the world is neutral; **one** strong colour (red, yellow or orange) marks the part the film is about.
+Rule: the world is neutral and low-contrast; **one** strong colour marks the part the film is about.
 
 ## Motion (stage only)
 
@@ -74,15 +73,16 @@ Rule: the world is neutral; **one** strong colour (red, yellow or orange) marks 
 
 | need | use |
 |---|---|
-| plate | `plate()` with this kit (`gradient` paper → paper-low); night variant: `bgGradient` with the night colours plus 4–6 large blurred `ellipse` clouds, seeded |
+| plate | `plate()` with the project kit set to `gradient`, no texture, grain 0, vignette 0; night variant: `bgGradient` with dark shades of the kit colour plus 4–6 large blurred `ellipse` clouds, seeded |
 | atmosphere fade | after drawing the stage, `fill` a vertical linear gradient from `B.c.bg` (alpha 1) to transparent over the top of the stage |
 | 3-tone objects | write a small `box3(ctx, x, y, w, h, d, tones)` iso-box helper in the project (`stage.mjs`): top / front / side faces + 1 px darker outline; build machines from boxes, cylinders (`ellipse` + rect) and `poly` |
 | repeated detail | loops with seeded indices (ribs every 10–14 px, windows in a grid, keys in a grid) — rule 7 |
-| glow on key part | `glow()` from `core.mjs` with `B.c.accent2` (yellow) |
+| glow on key part | `glow()` from `core.mjs` with `B.c.accent` |
+| tones | `shade()` / `mix()` from `core.mjs` on the kit colours; never hard-code hex |
 | contact shadow | `ellipse` filled `rgba(0,0,0,.18)` with `ctx.filter = "blur(10px)"` |
 | camera | `push()` / `camera()` from `fx.mjs`, gentle values only |
 
 If `box3` or the iso helpers prove useful across films, move them into `lib/shapes.mjs`.
 
-Checklist before render: one subject, one strong accent colour, top quarter of the frame calm and empty,
+Checklist before render: all colours from `B.c` (no hex in the stage code), one subject, one strong accent colour, top quarter of the frame calm and empty,
 no text baked into the illustration (no logos, no names), mechanism visibly moving in every beat.
