@@ -1,0 +1,42 @@
+{
+  "name": "Lo Jaditau look (everyday-machine illustration, background only)",
+  "colors": {
+    "bg": "#EEE9E1",
+    "surface": "#D5D7D3",
+    "fg": "#1F1D1A",
+    "muted": "#7A8189",
+    "accent": "#E06A55",
+    "accent2": "#F2C84B",
+    "accent3": "#E2683C",
+    "paperWarm": "#C3BEB2",
+    "steel": "#CBCFD6",
+    "steelMid": "#A5ADB6",
+    "steelDark": "#7A8189",
+    "metal": "#2B2F37",
+    "glass": "#526476",
+    "road": "#35486C",
+    "nightTop": "#1E2636",
+    "nightLow": "#2D3649",
+    "cloud": "#454F65"
+  },
+  "fonts": {
+    "display": { "family": "Poppins", "files": ["Poppins-Bold.ttf"], "weight": 700, "upper": false },
+    "head": { "family": "Poppins", "files": ["Poppins-Bold.ttf"], "weight": 700 },
+    "body": { "family": "Poppins", "files": ["Poppins-SemiBold.ttf"], "weight": 600 },
+    "mono": { "family": "Space Mono", "files": ["SpaceMono-Bold.ttf"], "weight": 700 }
+  },
+  "logo": null,
+  "radius": 16,
+  "style": {
+    "plate": "gradient",
+    "gradientTo": "surface",
+    "texture": "none",
+    "anim": "rise",
+    "hook": "rise",
+    "highlight": "color",
+    "transition": "fade",
+    "transitionDur": 0.45,
+    "grain": 0.0,
+    "vignette": 0.0
+  }
+}

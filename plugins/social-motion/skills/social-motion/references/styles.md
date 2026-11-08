@@ -50,6 +50,15 @@ Full recipe (layout, colour-as-meaning, stage objects, beat structure, sound): `
 - Gold = subject, red = bad, green = good. Motion: fade / rise, damp ≥ .8, camera moves instead of cuts.
 - Sound: VO first, crowd ambience bed, ticks under counters.
 
+## 6. Everyday-machine illustration (reference: lo.jaditau) — background / stage only
+
+Clean flat-vector 3/4 machines in a soft paper-coloured world. Kit `lo-jaditau`. Saved for the
+**illustration only**: pair it with the type of whatever kit the film uses.
+Full recipe (palette, 3-tone objects, atmosphere fade, night variant, motion): `references/style-lo-jaditau.md`.
+- Plate: paper `#EEE9E1` → `#D5D7D3`, no texture, no grain; top quarter left calm.
+- One subject, 3 tones per material, thin darker outlines, soft contact shadows, one accent (red / yellow / orange).
+- Motion: slow push-ins and drifts, the mechanism itself moves, damp ≥ .85, `fade` between views.
+
 ## Saved reference styles
 
 When the user names an account or says "pakai gaya X", look here first and read the linked file.
@@ -57,6 +66,7 @@ When the user names an account or says "pakai gaya X", look here first and read 
 | user says | read | kit |
 |---|---|---|
 | story.gaffer, storygaffer, "gaya story gaffer", stadium data story | `references/style-story-gaffer.md` | `stadium-night` |
+| lo.jaditau, lojaditau, "gaya lo jaditau", "gaya jaditau" (background / illustration only) | `references/style-lo-jaditau.md` | `lo-jaditau` |
 
 To add one: study the reference, write `references/style-<name>.md` (same sections as the story.gaffer file),
 make a kit in `brands/<name>/`, add a preset above and a row in this table.
