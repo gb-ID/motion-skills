@@ -1,7 +1,7 @@
 {
   "name": "social-motion-skill",
   "description": "Social motion graphics written as code: kinetic typography, stat counters, charts, captions, transitions and synthesised sound, rendered frame-exact to 9:16 MP4.",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "owner": { "name": "Rizki" },
   "plugins": [
     {

@@ -67,6 +67,23 @@ Full recipe: `references/style-stadium-hybrid.md`; reference code `examples/stad
 - Same plate, floodlight bloom, striped turf and crowd dots in every scene; players are 3-tone tokens.
 - One accent per frame; camera moves (not cuts) link the views.
 
+## 8. One idea, one line (reference: visualizevalue)
+
+A single sentence as one tiny geometric diagram in an empty dark frame. Saved with **no colours**: plate =
+kit `bg`, lines = kit `fg`, one accent at most. Full recipe: `references/style-visualizevalue.md`.
+- Flat plate, no texture; diagram centred at 30–55 % width; strokes only, 2–3 px.
+- Labels: tiny mono caps (26–34 px) beside the lines. No headline, no chip.
+- Motion: draw-on, scramble/decode, slow rotation, recursive zoom; seamless loop, 4–11 s.
+
+## 9. Line stadium (visualizevalue × story.gaffer)
+
+Story.gaffer's narrated data story (VO, headline per beat, counter, verdict) with its stadium redrawn as a
+visualizevalue line sketch: pitch markings only, outline tokens, dot heatmaps, curves that draw on.
+Colours and type from the project kit. Full recipe: `references/style-line-stadium.md`; reference code
+`examples/line-stadium/`.
+- Flat plate, strokes only, one accent per frame; headline top-left, mono counter and labels.
+- Everything draws on; labels decode; camera dolly between views like story.gaffer.
+
 ## Saved reference styles
 
 When the user names an account or says "pakai gaya X", look here first and read the linked file.
@@ -76,6 +93,8 @@ When the user names an account or says "pakai gaya X", look here first and read 
 | story.gaffer, storygaffer, "gaya story gaffer", stadium data story | `references/style-story-gaffer.md` | `stadium-night` |
 | lo.jaditau, lojaditau, "gaya lo jaditau", "gaya jaditau" → **football / pitch content (GoonerBurger, any match or player explainer): use the stadium hybrid** `references/style-stadium-hybrid.md`; anything else: `references/style-lo-jaditau.md` (illustration only) | see left | none: use the project's kit |
 | "story.gaffer + lo.jaditau", "stadium hybrid", "jalan tengah", and "gaya lo.jaditau" on football content, football explainer mixing pitch and object scenes | `references/style-stadium-hybrid.md` | none: use the project's kit |
+| visualizevalue, visualize value, "gaya visualizevalue", Jack Butcher style → **narrated data story / with VO / football: use the line stadium** `references/style-line-stadium.md`; short silent one-idea loop (quote, aphorism): `references/style-visualizevalue.md` | see left | none: use the project's kit |
+| "visualizevalue × story.gaffer", "visualizevalue + story.gaffer", "line stadium", "gaya garis" | `references/style-line-stadium.md` | none: use the project's kit |
 
 To add one: study the reference, write `references/style-<name>.md` (same sections as the story.gaffer file),
 make a kit in `brands/<name>/`, add a preset above and a row in this table.
